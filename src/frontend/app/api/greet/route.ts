@@ -8,12 +8,14 @@ export async function GET(request: Request) {
   const backendUrl = process.env.BACKEND_URL || "http://127.0.0.1:3000";
 
   try {
-    const res = await fetch(`${backendUrl}/greet?name=${encodeURIComponent(name)}`);
+    const res = await fetch(
+      `${backendUrl}/greet?name=${encodeURIComponent(name)}`,
+    );
 
     if (!res.ok) {
       return NextResponse.json(
         { message: "Backend returned an error" },
-        { status: res.status }
+        { status: res.status },
       );
     }
 
@@ -22,7 +24,7 @@ export async function GET(request: Request) {
   } catch (error) {
     return NextResponse.json(
       { message: "Failed to connect to Go backend" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
