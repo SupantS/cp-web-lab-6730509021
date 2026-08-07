@@ -1,6 +1,10 @@
 name: CI
 on: [push,pull_request]
 
+permissions:
+  contents: write
+  pull-requests: read
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
   cancel-in-progress: true
